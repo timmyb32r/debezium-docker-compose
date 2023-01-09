@@ -1,5 +1,5 @@
 {
-    "name": "timmyb32r-pg-json-karapace-connector",
+    "name": "timmyb32r-schema-registry-pg-karapace-json-connector",
     "config": {
         "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
         "database.hostname": "postgres",
