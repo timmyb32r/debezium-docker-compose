@@ -1,0 +1,33 @@
+{
+    "name": "inventory-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+        "tasks.max": "1",
+        "database.hostname": "MYSQL_HOSTNAME",
+        "database.port": "3306",
+        "database.user": "MYSQL_USER",
+        "database.password": "MYSQL_PASS",
+        "database.server.id": "184054",
+        "topic.prefix": "dbserver1",
+        "database.include.list": "MYSQL_DATABASE",
+        "database.ssl.mode": "required",
+        "snapshot.mode": "never",
+
+        "schema.history.internal.kafka.bootstrap.servers": "KAFKA_BOOTSTRAP_SERVERS",
+        "schema.history.internal.kafka.topic": "schema-changes.inventory",
+
+        "schema.history.internal.producer.ssl.truststore.location": "/cert/ca.p12",
+        "schema.history.internal.producer.ssl.truststore.type": "PKCS12",
+        "schema.history.internal.producer.ssl.truststore.password": "STOREPASSW0RD",
+        "schema.history.internal.producer.security.protocol": "SASL_SSL",
+        "schema.history.internal.producer.sasl.mechanism": "SCRAM-SHA-512",
+        "schema.history.internal.producer.sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"KAFKA_USER\" password=\"KAFKA_PASS\";",
+
+        "schema.history.internal.consumer.ssl.truststore.location": "/cert/ca.p12",
+        "schema.history.internal.consumer.ssl.truststore.type": "PKCS12",
+        "schema.history.internal.consumer.ssl.truststore.password": "STOREPASSW0RD",
+        "schema.history.internal.consumer.security.protocol": "SASL_SSL",
+        "schema.history.internal.consumer.sasl.mechanism": "SCRAM-SHA-512",
+        "schema.history.internal.consumer.sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"KAFKA_USER\" password=\"KAFKA_PASS\";"
+    }
+}

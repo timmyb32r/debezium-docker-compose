@@ -1,0 +1,31 @@
+version: '2'
+services:
+  connect:
+    image: quay.io/debezium/connect:2.1
+    ports:
+     - 8083:8083
+    environment:
+     - BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS}
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - STATUS_STORAGE_TOPIC=my_connect_statuses
+
+     # creds for my_connect_configs/my_connect_offsets/my_connect_statuses
+     - CONNECT_SECURITY_PROTOCOL=SASL_SSL
+     - CONNECT_SASL_MECHANISM=SCRAM-SHA-512
+     - CONNECT_SASL_JAAS_CONFIG=org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USER}" password="${KAFKA_PASS}";
+     - CONNECT_SSL_TRUSTSTORE_LOCATION=/cert/ca.p12
+     - CONNECT_SSL_TRUSTSTORE_TYPE=PKCS12
+     - CONNECT_SSL_TRUSTSTORE_PASSWORD=STOREPASSW0RD
+
+     # creds for 
+     - CONNECT_PRODUCER_SECURITY_PROTOCOL=SASL_SSL
+     - CONNECT_PRODUCER_SASL_MECHANISM=SCRAM-SHA-512
+     - CONNECT_PRODUCER_SASL_JAAS_CONFIG=org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USER}" password="${KAFKA_PASS}";
+     - CONNECT_PRODUCER_SSL_TRUSTSTORE_LOCATION=/cert/ca.p12
+     - CONNECT_PRODUCER_SSL_TRUSTSTORE_TYPE=PKCS12
+     - CONNECT_PRODUCER_SSL_TRUSTSTORE_PASSWORD=STOREPASSW0RD
+    network_mode: "host"
+    volumes:
+     - ./cert:/cert
