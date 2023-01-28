@@ -52,7 +52,31 @@
     curl --silent -X GET http://localhost:8081/schemas/ids/6
         {"schema": "{\"properties\": {\"id\": {\"connect.index\": 0, \"connect.type\": \"int32\", \"type\": \"integer\"}, \"val\": {\"connect.index\": 1, \"oneOf\": [{\"type\": \"null\"}, {\"type\": \"string\"}]}}, \"title\": \"dbserver1.public.timmyb32r_favourite_table.Value\", \"type\": \"object\"}", "schemaType": "JSON"}
     ```
-
+    if pass though 'jq' field "schema" - we get clear and short schema description:
+    ```
+    {
+        "properties": {
+            "id": {
+                "connect.index": 0,
+                "connect.type": "int32",
+                "type": "integer"
+            },
+            "val": {
+                "connect.index": 1,
+                "oneOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "title": "dbserver1.public.timmyb32r_favourite_table.Value",
+        "type": "object"
+    }
+    ```
 
 ## notes:
 
