@@ -31,6 +31,7 @@
     INSERT INTO public.timmyb32r_favourite_table(id, val) VALUES (1, 'blablabla');
     \q
     ```
+
 3) check if topic created
     ```sh
     > kcat -b localhost:9092 -L

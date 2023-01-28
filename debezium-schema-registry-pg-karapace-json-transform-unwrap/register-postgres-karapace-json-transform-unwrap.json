@@ -1,0 +1,18 @@
+{
+    "name": "timmyb32r-schema-registry-pg-karapace-json-transform-unwrap-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "database.server.name": "fullfillment",
+        "table.whitelist": "public.timmyb32r_favourite_table",
+        "topic.prefix": "dbserver1",
+        "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
+        "value.converter.schema.registry.url": "http://karapace-registry:8081",
+        "transforms":"unwrap",
+        "transforms.unwrap.type":"io.debezium.transforms.ExtractNewRecordState"
+    }
+}
