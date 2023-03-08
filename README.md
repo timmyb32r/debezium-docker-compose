@@ -1,6 +1,6 @@
 
-# debezium-docker-compose\n\n
-demo cases:\n\n
+# debezium-docker-compose
+demo cases:
 *  debezium-mysql
 *  debezium-onprem-mysql
 *  debezium-pg-without-schema
