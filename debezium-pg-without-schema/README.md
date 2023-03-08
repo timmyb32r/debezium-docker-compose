@@ -37,6 +37,7 @@
 
 ## notes
 
+- Converter options works only when converter configured explicitly! Thanks Anvar from comments in https://stackoverflow.com/a/65800441
 - If you want to use debezium lower than 2.0 - you should change topic.prefix on database.server.name back in config
 - For some reason, kcat don't work as consumer with debezium-kafka-2.0
 
