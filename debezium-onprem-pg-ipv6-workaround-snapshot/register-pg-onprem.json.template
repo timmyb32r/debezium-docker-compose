@@ -1,0 +1,20 @@
+{
+    "name": "timmyb32r-debezium-pg-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+
+        "database.hostname": "host.docker.internal",
+        "database.port": "6432",
+        "database.user": "PG_USER",
+        "database.password": "PG_PASS",
+        "database.dbname" : "PG_DATABASE",
+        "topic.prefix": "dbserver1",
+        "table.include.list": "PG_SCHEMA.PG_TABLE_NAME",
+
+        "snapshot.mode": "initial_only",
+
+        "database.sslmode": "require",
+        "database.sslcert": "./cert/CA.pem"
+    }
+}
