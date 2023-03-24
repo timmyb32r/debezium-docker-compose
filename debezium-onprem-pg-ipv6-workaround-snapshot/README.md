@@ -95,3 +95,11 @@
         -X sasl.password=$KAFKA_PASS \
         -X ssl.ca.location=./cert/CA.pem
     ```
+
+## notes
+
+- Note that in register-pg-onprem.json.template: "database.hostname": "host.docker.internal". It's for go to localhost port forwarding
+
+## how built this docker-compose
+
+It's modified copy of 'debezium-onprem-mysql' example
