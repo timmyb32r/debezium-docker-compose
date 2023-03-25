@@ -4,6 +4,7 @@ demo cases:
 *  debezium-mysql
 *  debezium-onprem-mysql
 *  debezium-onprem-pg-ipv6-workaround-snapshot
+*  debezium-pg-topic-routing
 *  debezium-pg-without-schema
 *  debezium-pg
 *  debezium-schema-registry-pg-confluent-protobuf-transform-unwrap
