@@ -70,20 +70,25 @@
 
 ## Observation of subject name strategies
 
-"topic.prefix": "dbserver"
-"table.whitelist": "public.table_name"
+settings:
+- "topic.prefix": "dbserver"
+- "table.whitelist": "public.table_name"
 
-recordname-key name: `dbserver.public.table_name.Key`
-recordname-value name: `dbserver.public.table_name.Envelope`
-topic-name: `dbserver.public.table_name`
+names:
+- recordname-key name: `dbserver.public.table_name.Key`
+- recordname-value name: `dbserver.public.table_name.Envelope`
+- topic-name: `dbserver.public.table_name`
 
 so:
 - TopicNameStrategy: %topic-name% with suffix: '-key'/'-value'
-    `dbserver.public.table_name-key` & `dbserver.public.table_name-value`
-- RecordNameStrategy: %recordname-value% with suffix: '.Key'/'.Envelope'
-    `dbserver.public.table_name.Key` & `dbserver.public.table_name.Envelope`
-- TopicRecordNameStrategy: %topic-name%-%recordname-value% with suffix: '.Key'/'.Envelope'
-    `dbserver.public.table_name-dbserver.public.table_name.Key` & `dbserver.public.table_name-dbserver.public.table_name.Envelope`
+    key: `dbserver.public.table_name-key`
+    val: `dbserver.public.table_name-value`
+- RecordNameStrategy: %recordname-value%
+    key: `dbserver.public.table_name.Key`
+    val: `dbserver.public.table_name.Envelope`
+- TopicRecordNameStrategy: %topic-name%-%recordname%
+    key: `dbserver.public.table_name-dbserver.public.table_name.Key`
+    key: `dbserver.public.table_name-dbserver.public.table_name.Envelope`
 
 ## how built this docker-compose
 
