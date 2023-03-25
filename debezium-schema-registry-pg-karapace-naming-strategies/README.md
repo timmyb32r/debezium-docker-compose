@@ -81,14 +81,22 @@ names:
 
 so:
 - TopicNameStrategy: %topic-name% with suffix: '-key'/'-value'
+
     key: `dbserver.public.table_name-key`
+
     val: `dbserver.public.table_name-value`
+
 - RecordNameStrategy: %recordname-value%
+
     key: `dbserver.public.table_name.Key`
+
     val: `dbserver.public.table_name.Envelope`
+
 - TopicRecordNameStrategy: %topic-name%-%recordname%
+
     key: `dbserver.public.table_name-dbserver.public.table_name.Key`
-    key: `dbserver.public.table_name-dbserver.public.table_name.Envelope`
+
+    val: `dbserver.public.table_name-dbserver.public.table_name.Envelope`
 
 ## how built this docker-compose
 
