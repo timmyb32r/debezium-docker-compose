@@ -1,0 +1,20 @@
+{
+    "name": "timmyb32r-schema-registry-pg-karapace-naming-strategies--topic-record-name-strategy",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "database.server.name": "TopicRecordNameStrategy",
+        "table.whitelist": "public.table_name",
+        "topic.prefix": "dbserver3",
+
+        "slot.name": "topic_record_name_strategy",
+
+        "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
+        "value.converter.schema.registry.url": "http://karapace-registry:8081",
+        "value.converter.value.subject.name.strategy": "io.confluent.kafka.serializers.subject.TopicRecordNameStrategy"
+    }
+}
