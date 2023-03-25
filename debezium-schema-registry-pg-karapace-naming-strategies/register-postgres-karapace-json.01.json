@@ -9,9 +9,13 @@
         "database.dbname": "postgres",
         "database.server.name": "RecordNameStrategy",
         "table.whitelist": "public.table_name",
-        "topic.prefix": "dbserver2",
+        "topic.prefix": "dbserver1",
 
         "slot.name": "record_name_strategy",
+
+        "key.converter": "io.confluent.connect.json.JsonSchemaConverter",
+        "key.converter.schema.registry.url": "http://karapace-registry:8081",
+        "key.converter.value.subject.name.strategy": "io.confluent.kafka.serializers.subject.RecordNameStrategy",
 
         "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
         "value.converter.schema.registry.url": "http://karapace-registry:8081",

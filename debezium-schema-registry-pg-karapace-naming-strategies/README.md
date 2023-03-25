@@ -14,7 +14,7 @@
 
 ## demo
 
-0) register & run debezium kafka-connector & check subject names
+0) check TopicNameStrategy
     ```sh
     docker-compose up
     curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.00.json
@@ -24,14 +24,36 @@
     \q
     kcat -b localhost:9092 -L
         ...
+        topic "dbserver0.public.table_name" with 1 partitions:
+        ...
+    clear && curl --silent -X GET http://localhost:8081/subjects | jq
+        "dbserver0.public.table_name-key",
+        "dbserver0.public.table_name-value"
+    docker ps -a | awk '{print $1}' | xargs docker rm
+    ```
+
+1) check RecordNameStrategy
+    ```
+    docker-compose up
+    curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.01.json
+    export PGPASSWORD='postgres' && psql -h localhost -p 5432 -U postgres -d postgres
+    CREATE TABLE public.table_name(id INT PRIMARY KEY, val text);
+    INSERT INTO public.table_name(id, val) VALUES (1, 'blablabla');
+    \q
+    kcat -b localhost:9092 -L
+        ...
         topic "dbserver1.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver1.public.table_name-value"
+        "dbserver1.public.table_name-key",
+        "dbserver1.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
+    ```
 
+2) check TopicRecordNameStrategy
+    ```
     docker-compose up
-    curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.01.json
+    curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.02.json
     export PGPASSWORD='postgres' && psql -h localhost -p 5432 -U postgres -d postgres
     CREATE TABLE public.table_name(id INT PRIMARY KEY, val text);
     INSERT INTO public.table_name(id, val) VALUES (1, 'blablabla');
@@ -41,17 +63,8 @@
         topic "dbserver2.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver2.public.table_name.Envelope"
-    docker ps -a | awk '{print $1}' | xargs docker rm
-
-    docker-compose up
-    curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.02.json
-    export PGPASSWORD='postgres' && psql -h localhost -p 5432 -U postgres -d postgres
-    CREATE TABLE public.table_name(id INT PRIMARY KEY, val text);
-    INSERT INTO public.table_name(id, val) VALUES (1, 'blablabla');
-    \q
-    clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver3.public.table_name-dbserver3.public.table_name.Envelope"
+        "dbserver2.public.table_name-key",
+        "dbserver2.public.table_name-dbserver2.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
 
