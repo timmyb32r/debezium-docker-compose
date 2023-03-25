@@ -33,7 +33,7 @@
     ```
 
 1) check RecordNameStrategy
-    ```
+    ```sh
     docker-compose up
     curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.01.json
     export PGPASSWORD='postgres' && psql -h localhost -p 5432 -U postgres -d postgres
@@ -51,7 +51,7 @@
     ```
 
 2) check TopicRecordNameStrategy
-    ```
+    ```sh
     docker-compose up
     curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-postgres-karapace-json.02.json
     export PGPASSWORD='postgres' && psql -h localhost -p 5432 -U postgres -d postgres
