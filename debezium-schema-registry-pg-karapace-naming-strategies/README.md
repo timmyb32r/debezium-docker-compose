@@ -45,7 +45,7 @@
         topic "dbserver.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver.public.table_name-key",
+        "dbserver.public.table_name.Key",
         "dbserver.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
@@ -63,7 +63,7 @@
         topic "dbserver.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver.public.table_name-key",
+        "dbserver.public.table_name-dbserver.public.table_name.Key",
         "dbserver.public.table_name-dbserver.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
