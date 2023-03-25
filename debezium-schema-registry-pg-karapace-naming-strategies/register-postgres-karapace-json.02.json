@@ -9,7 +9,7 @@
         "database.dbname": "postgres",
         "database.server.name": "TopicRecordNameStrategy",
         "table.whitelist": "public.table_name",
-        "topic.prefix": "dbserver2",
+        "topic.prefix": "dbserver",
 
         "slot.name": "topic_record_name_strategy",
 

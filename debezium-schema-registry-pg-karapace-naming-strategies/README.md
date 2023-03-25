@@ -24,11 +24,11 @@
     \q
     kcat -b localhost:9092 -L
         ...
-        topic "dbserver0.public.table_name" with 1 partitions:
+        topic "dbserver.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver0.public.table_name-key",
-        "dbserver0.public.table_name-value"
+        "dbserver.public.table_name-key",
+        "dbserver.public.table_name-value"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
 
@@ -42,11 +42,11 @@
     \q
     kcat -b localhost:9092 -L
         ...
-        topic "dbserver1.public.table_name" with 1 partitions:
+        topic "dbserver.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver1.public.table_name-key",
-        "dbserver1.public.table_name.Envelope"
+        "dbserver.public.table_name-key",
+        "dbserver.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
 
@@ -60,11 +60,11 @@
     \q
     kcat -b localhost:9092 -L
         ...
-        topic "dbserver2.public.table_name" with 1 partitions:
+        topic "dbserver.public.table_name" with 1 partitions:
         ...
     clear && curl --silent -X GET http://localhost:8081/subjects | jq
-        "dbserver2.public.table_name-key",
-        "dbserver2.public.table_name-dbserver2.public.table_name.Envelope"
+        "dbserver.public.table_name-key",
+        "dbserver.public.table_name-dbserver.public.table_name.Envelope"
     docker ps -a | awk '{print $1}' | xargs docker rm
     ```
 
