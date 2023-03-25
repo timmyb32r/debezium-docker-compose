@@ -75,8 +75,8 @@ settings:
 - "table.whitelist": "public.table_name"
 
 names:
-- recordname-key name: `dbserver.public.table_name.Key`
-- recordname-value name: `dbserver.public.table_name.Envelope`
+- key recordname: `dbserver.public.table_name.Key`
+- value recordname: `dbserver.public.table_name.Envelope`
 - topic-name: `dbserver.public.table_name`
 
 so:
@@ -86,7 +86,7 @@ so:
 
     val: `dbserver.public.table_name-value`
 
-- RecordNameStrategy: %recordname-value%
+- RecordNameStrategy: %recordname%
 
     key: `dbserver.public.table_name.Key`
 
