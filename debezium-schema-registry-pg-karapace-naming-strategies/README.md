@@ -98,6 +98,12 @@ so:
 
     val: `dbserver.public.table_name-dbserver.public.table_name.Envelope`
 
+## fun fact
+
+If use topic-routing to merge >1 topics (with incompatible schemas) into one topic with schema-registry - it doesn't work with any naming strategy, even with TopicRecordNameStrategy
+
+For example, if you have table1 & table2 - with route configured into some my_topic_name, both events will have same subject name, derived from my_topic_name
+
 ## how built this docker-compose
 
 It's modified copy of 'debezium-schema-registry-pg-karapace-json'

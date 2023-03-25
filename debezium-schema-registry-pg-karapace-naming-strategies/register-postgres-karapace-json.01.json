@@ -11,8 +11,6 @@
         "table.whitelist": "public.table_name",
         "topic.prefix": "dbserver",
 
-        "slot.name": "record_name_strategy",
-
         "key.converter": "io.confluent.connect.json.JsonSchemaConverter",
         "key.converter.schema.registry.url": "http://karapace-registry:8081",
         "key.converter.key.subject.name.strategy": "io.confluent.kafka.serializers.subject.RecordNameStrategy",

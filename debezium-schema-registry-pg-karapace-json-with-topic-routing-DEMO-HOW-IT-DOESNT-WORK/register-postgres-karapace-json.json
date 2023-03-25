@@ -1,5 +1,5 @@
 {
-    "name": "timmyb32r-schema-registry-pg-karapace-naming-strategies--topic-record-name-strategy",
+    "name": "timmyb32r-schema-registry-pg-karapace-json-connector-with-routing-into-one-table",
     "config": {
         "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
         "database.hostname": "postgres",
@@ -7,9 +7,9 @@
         "database.user": "postgres",
         "database.password": "postgres",
         "database.dbname": "postgres",
-        "database.server.name": "TopicRecordNameStrategy",
-        "table.whitelist": "public.table_name",
-        "topic.prefix": "dbserver",
+        "database.server.name": "fullfillment",
+        "schema.include.list": "public",
+        "topic.prefix": "dbserver1",
 
         "key.converter": "io.confluent.connect.json.JsonSchemaConverter",
         "key.converter.schema.registry.url": "http://karapace-registry:8081",
@@ -17,6 +17,11 @@
 
         "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
         "value.converter.schema.registry.url": "http://karapace-registry:8081",
-        "value.converter.value.subject.name.strategy": "io.confluent.kafka.serializers.subject.TopicRecordNameStrategy"
+        "value.converter.value.subject.name.strategy": "io.confluent.kafka.serializers.subject.TopicRecordNameStrategy",
+
+        "transforms": "Reroute",
+        "transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
+        "transforms.Reroute.topic.regex": ".*",
+        "transforms.Reroute.topic.replacement": "timmyb32r_server.timmyb32r_schema.timmyb32r_topic_name"
     }
 }
