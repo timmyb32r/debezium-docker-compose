@@ -7,6 +7,8 @@ demo cases:
 * [debezium-pg-topic-routing](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-pg-topic-routing)
 * [debezium-pg-without-schema](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-pg-without-schema)
 * [debezium-pg](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-pg)
+* [debezium-schema-registry-pg-apicurio-json--IN-PROGRESS](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-schema-registry-pg-apicurio-json--IN-PROGRESS)
+* [debezium-schema-registry-pg-apicurio-with-confluent-serializer--IN-PROGRESS](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-schema-registry-pg-apicurio-with-confluent-serializer--IN-PROGRESS)
 * [debezium-schema-registry-pg-confluent-protobuf-transform-unwrap](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-schema-registry-pg-confluent-protobuf-transform-unwrap)
 * [debezium-schema-registry-pg-karapace-avro](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-schema-registry-pg-karapace-avro)
 * [debezium-schema-registry-pg-karapace-json-transform-unwrap](https://github.com/timmyb32r/debezium-docker-compose/tree/main/debezium-schema-registry-pg-karapace-json-transform-unwrap)

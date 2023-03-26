@@ -1,0 +1,84 @@
+---
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9101:9101"  # JMX
+      - "9092:9092"  # Kafka
+    environment:
+      # Listeners:
+      # PLAINTEXT_HOST -> Expose kafka to the host network
+      # PLAINTEXT -> Used by kafka for inter broker communication / containers
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://karapace-registry:8081
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      # Metrics:
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+      # Keep in sync with tests/integration/conftest.py::configure_and_start_kafka
+      KAFKA_BROKER_ID: 1
+      KAFKA_BROKER_RACK: "local"
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+      KAFKA_INTER_BROKER_PROTOCOL_VERSION: 2.4
+      KAFKA_LOG_CLEANER_ENABLE: "true"
+      KAFKA_LOG_MESSAGE_FORMAT_VERSION: 2.4
+      KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: 300000
+      KAFKA_LOG_SEGMENT_BYTES: 209715200
+      KAFKA_NUM_IO_THREADS: 8
+      KAFKA_NUM_NETWORK_THREADS: 112
+      KAFKA_NUM_PARTITIONS: 1
+      KAFKA_NUM_REPLICA_FETCHERS: 4
+      KAFKA_NUM_RECOVERY_THREADS_PER_DATA_DIR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_SOCKET_RECEIVE_BUFFER_BYTES: 102400
+      KAFKA_SOCKET_REQUEST_MAX_BYTES: 104857600
+      KAFKA_SOCKET_SEND_BUFFER_BYTES: 102400
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_NUM_PARTITIONS: 16
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 6000
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+
+  apicurio:
+    image: apicurio/apicurio-registry-mem:2.2.5.Final
+    ports:
+     - 8080:8080
+
+  postgres:
+    image: quay.io/debezium/example-postgres:2.0
+    ports:
+     - 5432:5432
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres
+
+  connect:
+    image: timmyb32r/debezium:2.0
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - postgres
+     - apicurio
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:29092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - STATUS_STORAGE_TOPIC=my_connect_statuses
+     - ENABLE_APICURIO_CONVERTERS=true

@@ -1,0 +1,17 @@
+{
+    "name": "timmyb32r-schema-registry-pg-apicurio-with-confluent-serializer",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "database.server.name": "fullfillment",
+        "schema.include.list": "public",
+        "topic.prefix": "dbserver1",
+
+        "value.converter": "io.confluent.connect.json.JsonSchemaConverter",
+        "value.converter.schema.registry.url": "http://apicurio:8080/apis/ccompat/v7"
+    }
+}
