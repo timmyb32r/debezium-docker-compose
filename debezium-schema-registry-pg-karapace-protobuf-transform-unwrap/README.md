@@ -43,7 +43,11 @@
 4) read message from kafka with schema registry
     ```
     kcat -b localhost:9092 -C -o beginning -q -t dbserver1.public.timmyb32r_favourite_table -c 1
-        returns 5 non-human-readable bytes (first byte is a magic byte, next 4 bytes represent the schema id in big endian) 0x00 (i don't know what for this byte) + protobuf + "\n" (last byte somewhy always new line byte):
+        returns:
+        - 5 non-human-readable bytes (first byte is a magic byte, next 4 bytes represent the schema id in big endian) 
+        - 0x00 message index
+        - protobuf message
+        - "\n" (last byte somewhy always new line byte):
         0x00 0x00 0x00 0x00 0x06 0x00 0x08 0x01 0x12 0x09 blablabla "\n"
             0x08 0x01 - it's VARINT (field_num=1) with value 1
             0x12 0x09 blablabla - it's LEN (field_num=2) with length=9, with value: "blablabla"
@@ -64,6 +68,11 @@
         string val = 2;
     }
     ```
+
+## messages indexes
+
+[description in habr article (RU)](https://habr.com/ru/company/lenta_utkonos_tech/blog/715298/)
+[description in confluent documentation (EN)](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#wire-format)
 
 ## how built this docker-compose
 
