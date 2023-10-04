@@ -16,14 +16,14 @@
         "schema.history.internal.kafka.bootstrap.servers": "KAFKA_BOOTSTRAP_SERVERS",
         "schema.history.internal.kafka.topic": "schema-changes.inventory",
 
-        "schema.history.internal.producer.ssl.truststore.location": "/cert/ca.p12",
+        "schema.history.internal.producer.ssl.truststore.location": "/cert/CA.p12",
         "schema.history.internal.producer.ssl.truststore.type": "PKCS12",
         "schema.history.internal.producer.ssl.truststore.password": "STOREPASSW0RD",
         "schema.history.internal.producer.security.protocol": "SASL_SSL",
         "schema.history.internal.producer.sasl.mechanism": "SCRAM-SHA-512",
         "schema.history.internal.producer.sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"KAFKA_USER\" password=\"KAFKA_PASS\";",
 
-        "schema.history.internal.consumer.ssl.truststore.location": "/cert/ca.p12",
+        "schema.history.internal.consumer.ssl.truststore.location": "/cert/CA.p12",
         "schema.history.internal.consumer.ssl.truststore.type": "PKCS12",
         "schema.history.internal.consumer.ssl.truststore.password": "STOREPASSW0RD",
         "schema.history.internal.consumer.security.protocol": "SASL_SSL",
