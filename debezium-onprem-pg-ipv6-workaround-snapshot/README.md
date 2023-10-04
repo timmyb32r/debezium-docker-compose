@@ -1,4 +1,4 @@
-# debezium 'on premise pg (on ip v6 with workaround)' -> 'on premise kafka' SNAPSHOT (tested on yandex.cloud: managed mysql & managed kafka)
+# debezium 'on premise pg (on ip v6 with workaround)' -> 'on premise kafka' SNAPSHOT (tested on yandex.cloud: managed pg & managed kafka)
 
 ## demo
 
