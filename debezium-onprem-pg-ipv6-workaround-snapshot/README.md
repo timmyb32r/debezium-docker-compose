@@ -48,6 +48,8 @@
         sed "s/KAFKA_PASS/$KAFKA_PASS/g" | \
         sed "s/PG_HOSTNAME/$PG_HOSTNAME/g" | \
         sed "s/PG_DATABASE/$PG_DATABASE/g" | \
+        sed "s/PG_SCHEMA/$PG_SCHEMA/g" | \
+        sed "s/PG_TABLE_NAME/$PG_TABLE_NAME/g" | \
         sed "s/PG_USER/$PG_USER/g" | \
         sed "s/PG_PASS/$PG_PASS/g" \
         >./register-pg-onprem.json
